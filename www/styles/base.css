@@ -1,0 +1,75 @@
+/* Table Style Sheet Reference of Text Objects for ESU Fizmat Web-site */
+
+	body { font-family: Arial; font-size:10pt; background-color:#EFEFFF;
+               color:#000000; vertical-align: middle; text-align: center;
+               scrollbar-face-color: #CBD2ED; 
+               scrollbar-highlight-color: #BBC5E8;
+               scrollbar-3dlight-color: #FFFFFF;
+               scrollbar-shadow-color: gray;
+               scrollbar-darkshadow-color: #304078;
+               scrollbar-arrow-color: #304078; 
+               scrollbar-track-color: #BBC5E8; }
+
+	a:link {color: #000068; font-size:10pt; text-decoration:underline;}
+	a:visited {color: #000068; font-size:10pt; text-decoration:underline;}
+	a:active {color: #F30101; font-size:10pt; text-decoration:underline;}
+	a:hover {color: #F30101; font-size:10pt; text-decoration:underline;}
+
+	a.menu:link {color: #000068; font-size:8pt; text-decoration:none;}
+	a.menu:visited {color: #000068; font-size:8pt; text-decoration:none;}
+	a.menu:active {color: #F30101; font-size:8pt; text-decoration:underline;}
+	a.menu:hover {color: #F30101; font-size:8pt; text-decoration:underline;}
+
+        a.news:link {color: #1B11E3; text-decoration:none; font-size:8pt;}
+        a.news:visited {color: #1B11E3; text-decoration:none; font-size:8pt;}
+        a.news:active {color: #F30101; text-decoration:none; font-size:8pt;}
+        a.news:hover {color: #F30101; text-decoration:none; font-size:8pt;}
+
+        a.webmaster:link {color: #7cfc00; text-decoration:none; font-size:7pt;}
+        a.webmaster:visited {color: #7cfc00; text-decoration:none; font-size:7pt;}
+        a.webmaster:active {color: #7cfc00; text-decoration:none; font-size:7pt;}
+        a.webmaster:hover {color: #7cfc00; text-decoration:underline; font-size:7pt;}
+
+	table { font-size:10pt; }
+	td { font-size:10pt; }
+	tr { font-size:10pt; }
+	br { font-size: 10pt; }
+
+	p { font-size: 10pt; }
+
+        ul { list-style-type: square; }
+        ul.text { font-size: 12pt; line-height: 18pt; text-align:justify; }
+        ol.text { font-size: 12pt; line-height: 18pt; text-align:justify; }
+        li.text { font-size: 12pt; line-height: 18pt; }
+
+        h2.text { font-size: 14pt; line-height: 18pt; font-weight:bold; }
+        h3.text { font-size: 12pt; line-height: 18pt; font-weight:bold; }
+
+        .txt{ font-size:12pt; text-indent:36pt; text-align:justify; line-height: 18pt; }
+
+        .textblock { font-size:12pt; line-height: 18pt; } 
+
+        .referat { font-size:8pt; text-align:justify; margin-top: 3px;}
+
+	a.text:link { font-size:12pt; }
+	a.text:visited { font-size:12pt; }
+	a.text:active { font-size:12pt; }
+	a.text:hover { font-size:12pt; }
+
+	a.map:link { font-size:12pt; font-weight:bold; }
+	a.map:visited { font-size:12pt; font-weight:bold; }
+	a.map:active { font-size:12pt; font-weight:bold; }
+	a.map:hover { font-size:12pt; font-weight:bold; }
+
+        .bar { border: 1px; border-style: solid; }
+        input { font-size: 14px; text-align: center; vertical-align: middle; }
+        textarea { border: 1px; border-style: solid; font-size: 14px; text-align: justify; }
+
+        .zagolovok { filter:shadow(color="ee48", direction="150"); height:16; font-weight:bold; text-align:center; vertical-align: middle; color: #EFF2FA; }
+
+        .t1 { background-color: #B8C8E7; border: 1px solid #304078; text-align: center; vertical-align: middle; }
+        .t2 { background-color: #CBD5ED; border: 1px solid #FFFFFF; text-align: center; vertical-align: middle; }
+
+        .newsdate { color: #304078; font-size:8pt; }
+        
+        .snoska { font-size:10pt; text-align:right; line-height: 18pt; color: #000068; }

@@ -1,0 +1,339 @@
+<?PHP
+
+// **** Проверка наличия Cookies ************************************
+
+if(!isset($v1)) $v1="";
+
+if ($v1>4) { $v1=""; }
+
+if(!isset($oprosfour)) $oprosfour=0;
+
+if ($v1!="")
+ {
+ $oprosfour++;
+ SetCookie("oprosfour","$oprosfour");
+ }
+
+?>
+
+<html>
+<head>
+  <title>Физико-математический факультет ЕГУ им. И.А. Бунина ->> Результаты голосования</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+  <meta http-equiv="Content-Language" content="ru">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <META content="Официальный сайт физико-математического факультета ЕГУ им. И.А. Бунина" name=Description>
+  <META content="Елецкий Государственный Университет имени Ивана Алекеевича Бунина" name=Organisation>
+  <META content="факультет университет высшее образование научная деятельность вуз школа студент абитуриент профессор доцент кандидат экзамен сессия зачет Елец Бунин ЕГУ аспирантура конференции наука" name=Keywords>
+  <META content=alexander.shataloff@gmail.com name=OWNER>
+  <META content="Шаталов Александр" name=Designer>
+  <META content=index,follow name=ROBOTS>
+  <META content="4 weeks" name=REVISIT-AFTER>
+  <link href="http://fizmat.elsu.ru/images/logo.ico" rel="shortcut icon">
+  <link href="http://fizmat.elsu.ru/styles/base.css" rel=stylesheet type=text/css>
+  <script language=JavaScript src="http://fizmat.elsu.ru/scripts/others.js"></script>
+</head>
+
+<body ID=dbody NAME=dbody leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" scroll=auto onload="Loading();">
+
+<!--Таблица высотой 5 пикселей -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle" height="5"><A name=top></A></td>
+  </tr>
+</table>
+
+<?php
+
+ include("../index/flash.html");
+
+?>
+
+<!-- Основная таблица -->
+<table width="770" border="0" cellspacing="2" bgcolor="#304078" cellpadding="0" align="center" valign="middle">
+  <tr>
+    <td colspan=3 bgcolor="#B4BEE4" height=20 valign="middle">
+      <table width="766" border="0" cellspacing="2" cellpadding="0">
+	<tr>
+	  <td width="230" align="left">
+            <font style="font-size:8pt;"><I>
+              &nbsp;
+              <script language=JavaScript>
+                WriteDate()
+              </script>
+            </I></font>
+          </td>
+
+          <td width="*">
+            <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#304078">
+              <tr>
+                <td width="10" align="center" bgcolor="#91A3D9">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#5E78C6">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#3C57A8">&nbsp;</td>
+                <td width="*" align="center">
+                  <font class=zagolovok>··· РЕЗУЛЬТАТЫ ГОЛОСОВАНИЯ ···</font>
+                </td>
+                <td width="10" align="center" bgcolor="#3C57A8">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#5E78C6">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#91A3D9">&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+
+          <td width="230" align="right">
+            <font style="font-size:9pt;">
+              <A class=menu href="javascript:history.back(1);" title="Назад">Назад</A>
+              ·
+              <A class=menu href="javascript:history.forward(1);" title="Вперед">Вперед</A>
+              &nbsp;
+            </font>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="766" bgcolor="#DFE3F4" align="center" valign="middle" colspan=3>
+
+    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="30"><tr><td align="center" valign="middle">
+
+<! -- Здесь начинается содержание страницы ************************************************** -->
+
+ <p><b style="font-size: 12pt;">Результаты текущего голосования</b></p>
+
+
+<?PHP
+
+// **** Скрипт обработки результатов ********************************
+
+$file = file("itog.log");
+$c = count($file);
+
+for ($i=0;$i<=$c;$i++)
+  {
+  @$file[$i]=trim($file[$i]);
+  }
+
+if ($oprosfour<2 && $v1!="")
+  {
+  $list = fopen("itog.log","w");
+  fputs($list,"");
+  fclose($list);
+  $file[$v1]++;
+  $list = fopen("itog.log","a");
+  for($i=0;$i<$c;$i++)
+    {
+    fputs($list,"$file[$i]\n");
+    }
+  fclose($list);
+}
+
+for ($i=0;$i<$c;$i++)
+  {
+  @$x=$x+$file[$i];
+  }
+
+if ($x==0) { $x=1; }
+
+$proc=array();
+$amounts=0;
+
+for($i=0;$i<$c;$i++)
+  {
+  $amounts=$amounts+$file[$i];
+  $proc[$i]=$file[$i]*100/$x;
+  $proc[$i]=round($proc[$i]);
+  }
+
+$colors=array("#B8C8E7", "#9CB5DC", "#85A3D3", "#5E85C6", "#4271BD", "#365B98", "#2E4E81", "#1F3456");
+
+$question=array("На курорте", "Поеду работать в лагерь", "Останусь в родном городе", "У родственников (в деревне, на даче и т.п.)");
+
+echo(" <table height=200 border=\"0\" cellspacing=\"0\" cellpadding=\"0\" valign=\"middle\">
+         <tr>
+           <td>
+             <table width=\"36\" border=\"0\" height=\"100%\">
+               <tr valign=top><td align=center>100%</td></tr>
+               <tr valign=bottom><td align=center>0%</td></tr>
+             </table>
+           </td>
+           <td>
+             <table height=\"100%\" style=\"border: 1px inset;\"><tr>
+     ");
+
+for($i=0;$i<$c;$i++)
+  {
+  $ost[$i]=100-$proc[$i];
+  echo("
+        <td width=\"36\" align=\"center\" valign=\"bottom\">
+          <table width=\"34\" border=\"0\" height=\"100%\">
+            <tr height=\"$ost[$i]%\" valign=bottom><td align=center><i>$proc[$i]%</i></td></tr>
+            <tr height=\"$proc[$i]%\">
+              <td>
+                <table width=\"100%\" height=\"100%\" bgcolor=\"$colors[$i]\" style=\"border: 2px outset;\">
+                  <tr><td></td></tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+       ");
+  }
+
+echo("</tr></table></td>
+      <td width=\"10\">
+      </td>
+      <td>
+        <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" valign=\"middle\">
+          <tr height=\"20\">
+            <td colspan=3><i><b>Вопрос:</b> Где Вы собираетесь провести лето?</i></td>
+          </tr>
+          <tr height=\"10\">
+           <td colspan=3></td>
+          </tr>
+
+          <tr height=\"20\">
+            <td colspan=3><i><b>Варианты ответов:</b></i></td>
+          </tr>
+          <tr height=\"10\">
+           <td colspan=3></td>
+          </tr>
+     ");
+
+
+for($i=0;$i<$c;$i++)
+  {
+  echo("
+
+         <tr height=\"20\">
+           <td width=\"20\">
+           <table width=20 height=20 bgcolor=\"$colors[$i]\" style=\"border: outset 1px;\">
+             <tr><td></td></tr>
+           </table>
+           </td>
+           <td>&nbsp; -&nbsp;
+           </td>
+           <td><i>$question[$i]</i>
+           </td>
+         </tr>
+
+         <tr height=\"10\">
+           <td colspan=3></td>
+         </tr>
+
+       ");
+
+  }
+
+  echo("
+
+
+          <tr height=\"20\">
+            <td colspan=3><i><b>Количество опрошенных:</b> $amounts</i></td>
+          </tr>
+
+  </table></tr></table>
+
+      ");
+
+?>
+
+
+ <br>&nbsp;<br>
+ <hr width="100%" align="center" style="color: #304078;" size="1">
+
+ <p><b style="font-size: 12pt;">Результаты предыдущих голосований</b></p>
+
+     <TABLE width="100%" cellSpacing="1" cellPadding="4" align=center border=0 bgcolor="#304078">
+     <TBODY style="font-size:12pt; line-height: 18pt;" align="center">
+     <TR bgcolor="#B4C5E4">
+        <TD style="font-size:12pt;" rowspan=2>Дата<br>проведения</TD>
+        <TD style="font-size:12pt;" rowspan=2>Вопрос</TD>
+        <TD style="font-size:12pt;" colspan=4>Варианты ответов и количество набранных голосов</TD>
+     </TR>
+     <TR bgcolor="#B4C5E4">
+        <TD style="font-size:12pt;">1</TD>
+        <TD style="font-size:12pt;">2</TD>
+        <TD style="font-size:12pt;">3</TD>
+        <TD style="font-size:12pt;">4</TD>
+     </TR>
+     <TR bgcolor="#CBD5ED">
+        <TD style="font-size:12pt;">май<br>2003 года</TD>
+        <TD style="font-size:12pt;">Что беспокоит Вас больше всего?</TD>
+        <TD style="font-size:12pt;">Предстоящая сессия<br><b><i>4 (44%)</i></b></TD>
+        <TD style="font-size:12pt;">Будет ли повышена стипендия (зарплата)?<br><b><i>4 (44%)</i></b></TD>
+        <td style="font-size:12pt;">Ирак<br><i>0 (0%)</i></td>
+        <td style="font-size:12pt;">Личные проблемы<br><i>1 (11%)</i></td>
+     </TR>
+     <TR bgcolor="#CBD5ED">
+        <TD style="font-size:12pt;">апрель<br>2003 года</TD>
+        <TD style="font-size:12pt;">Как Вы относитесь к ситуации вокруг Ирака?</TD>
+        <TD style="font-size:12pt;">Одобряю<br><i>0 (0%)</i></TD>
+        <TD style="font-size:12pt;">Мне всё равно<br><i>0 (0%)</i></TD>
+        <td style="font-size:12pt;">Это не выход<br><i>0 (0%)</i></td>
+        <td style="font-size:12pt;">Отрицательно<br><b><i>1 (100%)</i></b></td>
+     </TR>
+     <TR bgcolor="#CBD5ED">
+        <TD style="font-size:12pt;">март<br>2003 года</TD>
+        <TD style="font-size:12pt;">Нужен ли нам Chat?</TD>
+        <TD style="font-size:12pt;">Конечно<br><b><i>8 (57%)</i></b></TD>
+        <TD style="font-size:12pt;">Было бы не плохо<br><i>2 (14%)</i></TD>
+        <td style="font-size:12pt;">Зачем?<br><i>2 (14%)</i></td>
+        <td style="font-size:12pt;">Нет, не нужен<br><i>2 (14%)</i></td>
+     </TR>
+     </TBODY>
+    </TABLE>
+
+<! -- Здесь заканчивается содержание страницы *********************************************** -->
+
+      </td></tr></table>
+
+    </td>
+  </tr>
+
+  <tr bgcolor="#B4BEE4">
+    <td colspan=3 height=20 align="center" valign="middle">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr valign="middle">
+          <td align="center" width="180"><a title="Сделать fizmat.elsu.ru стартовой страницей" class=menu href="" onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://fizmat.elsu.ru/polls/index.phtml'); return false;">
+          Сделать страницу стартовой</a>
+          </td>
+          <td align="center" width="*">
+          <a title="Перейти вверх страницы" class=menu href="#top">
+          ··· Вверх ···</a>
+          </td>
+          <td align="center" width="180"><a title="Добавить сайт fizmat.elsu.ru в избранное: Ctrl+D" class=menu href="" onClick="window.external.addFavorite
+          ('http://fizmat.elsu.ru/polls/index.phtml', 'Физико-математический факультет ЕГУ им. И.А. Бунина - Результаты голосования'); return false;">
+          Добавить сайт в избранное</a>
+          </td>
+        </tr>
+      </table>
+     </td>
+  </tr>
+
+  <tr bgcolor="#304078" height=20>
+    <td colspan=3 align="center" valign="middle">
+      <font style="font-size: 7pt;" color="#FFFFFF">
+        <script language=JavaScript>
+          WriteModified()
+        </script>
+        Оптимизировано для Internet Explorer 5.5 и Shockwave Flash 5. Рекомендуемое разрешение экрана 800x600.
+        <a class=webmaster href="mailto:alexander.shataloff@gmail.com?subject=Письмо Web-мастеру fizmat.elsu.ru&Body=Уважаемый Web-мастер!" title="Напиши письмо Web-masterу">Web-master</a>
+      </font>
+    </td>
+  </tr>
+
+</table>
+
+<!--Таблица высотой 5 пикселей -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle" height="5"> </td>
+  </tr>
+</table>
+
+<?php include("../index/counters.html"); ?>
+
+</body>
+</html>

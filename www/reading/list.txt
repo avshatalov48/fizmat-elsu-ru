@@ -1,0 +1,7 @@
+<a class=map href="index.phtml?number=1">Какая армия нужна России?</a> &nbsp; (<I><a class=text href="mailto:lg@lipetsk.ru">&laquo;Липецкая газета&raquo;</a> №70 (21948) 16 апреля 2003 г.</I>)
+<a class=map href="index.phtml?number=2">Сага о повышенной стипендии.</a> &nbsp; (<I><a class=text href="http://www.vtornik.ru/" targer="_blank">&laquo;Деловой вторник&raquo;</a> №10 (410) 1 апреля 2003 г.</I>)
+<a class=map href="index.phtml?number=3">Нескучная физика Пинского.</a> &nbsp; (<I><a class=text href="mailto:milada@yelets.lipetsk.ru">&laquo;Талисман&raquo;</a> №8 (394) 26 апреля 2002 г.</I>)
+<a class=map href="index.phtml?number=4">"Взлётная полоса" Сергея Силкина.</a> &nbsp; (<I><a class=text href="mailto:milada@yelets.lipetsk.ru">&laquo;Талисман&raquo;</a> №17 (403) 4 октября 2002 г.</I>)
+<a class=map href="index.phtml?number=5">Лучшие "мартовские коты" живут в Ельце.</a> &nbsp; (<I>&laquo;Красное знамя&raquo; №57-58 12 апреля 2003 г.</I>)
+<a class=map href="index.phtml?number=6">Наука выживания.</a> &nbsp; (<I><a class=text href="http://www.almater.ru/" targer="_blank">&laquo;alMAter.ru&raquo;</a> №4 (4) 16-29 апреля 2003 г.</I>)
+<a class=map href="index.phtml?number=7">Служить бы рад, да школа не пускает.</a> &nbsp; (<I><a class=text href="http://www.vtornik.ru/" targer="_blank">&laquo;Деловой вторник&raquo;</a> №11 (411) 8 апреля 2003 г.</I>)

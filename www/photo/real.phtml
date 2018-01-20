@@ -1,0 +1,166 @@
+<?PHP
+
+   // Считывание в массив информации о файлах, их размеры
+
+   $files = "info.txt";
+   $open = fopen($files, "r");
+   $lines = file($files);
+   fclose($open);
+   $a = count($lines);
+
+   // Считывание в массив названий фотографий
+
+   $files = "title.txt";
+   $open = fopen($files, "r");
+   $tit = file($files);
+   fclose($open);
+
+   // Считывание в массив комментариев к фотографиям
+
+   $files = "comments.txt";
+   $open = fopen($files, "r");
+   $comm = file($files);
+   fclose($open);
+
+
+   if (!isset($number)) $number=0;
+
+   if ($number>$a) { $number=0; }
+
+   $filename=trim(substr($lines[$number],0,7));
+   $info=trim(substr($lines[$number],8,strlen($lines[$number])));
+
+?>
+
+<html>
+<head>
+  <title>Фотографии ->> <?PHP print("$tit[$number]"); ?></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+  <meta http-equiv="Content-Language" content="ru">
+  <META content="Официальный сайт физико-математического факультета ЕГУ им. И.А. Бунина" name=Description>
+  <META content="Елецкий Государственный Университет имени Ивана Алекеевича Бунина" name=Organisation>
+  <META content="факультет университет высшее образование научная деятельность вуз школа студент абитуриент профессор доцент кандидат экзамен сессия зачет Елец Бунин ЕГУ аспирантура конференции наука" name=Keywords>
+  <META content=alexander.shataloff@gmail.com name=OWNER>
+  <META content="Шаталов Александр" name=Designer>
+  <META content=index,follow name=ROBOTS>
+  <META content="4 weeks" name=REVISIT-AFTER>
+  <link href="http://fizmat.elsu.ru/images/logo.ico" rel="shortcut icon">
+  <link href="http://fizmat.elsu.ru/styles/base.css" rel=stylesheet type=text/css>
+  <script language=JavaScript src="http://fizmat.elsu.ru/scripts/others.js"></script>
+</head>
+
+<body ID=dbody NAME=dbody leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" scroll=auto onload="dbody.background='http://fizmat.elsu.ru/images/fon.gif';">
+
+<!--Таблица высотой 5 пикселей -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle" height="5"><A name=top></A></td>
+  </tr>
+</table>
+
+<!-- Основная таблица -->
+<table width="770" border="0" cellspacing="2" bgcolor="#304078" cellpadding="0" align="center" valign="middle">
+
+  <tr>
+    <td colspan=3 bgcolor="#B4BEE4" height=20 valign="middle">
+      <table width="766" border="0" cellspacing="2" cellpadding="0">
+	<tr>
+	  <td width="230" align="left"></td>
+
+          <td width="*" align=center>
+            <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#304078">
+              <tr>
+                <td width="10" align="center" bgcolor="#91A3D9">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#5E78C6">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#3C57A8">&nbsp;</td>
+                <td width="*" align="center">
+                  <font class=zagolovok>··· ФОТОГРАФИИ ···</font>
+                </td>
+                <td width="10" align="center" bgcolor="#3C57A8">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#5E78C6">&nbsp;</td>
+                <td width="10" align="center" bgcolor="#91A3D9">&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+
+          <td width="230" align="right"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td bgcolor="#DFE3F4" align="center" valign="middle" colspan=3>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="30"><tr><td align="center">
+
+<! -- Здесь начинается содержание страницы ************************************************** -->
+
+<?PHP
+
+     print ("<TABLE cellSpacing=\"1\" cellPadding=\"8\" border=0 width=\"100%\" bgcolor=\"#304078\">\n");
+     print ("<TBODY align=\"center\" valign=\"top\">\n");
+     print ("<TR bgcolor=\"#DFE3F4\"><TD>");
+
+     $size=GetImageSize("big/$filename");
+
+     $w = $size[0];
+     $h = $size[1];
+
+     if ($w>680) {
+
+     $zoom = 680 / $w;
+     $w = $w * $zoom;
+     $h = $h * $zoom;
+
+     $w=round($w);
+     $h=round($h);
+
+     }
+
+     print ("<IMG ID=picture src=\"big/$filename\" ALT=\"$tit[$number]\" style=\"border: solid 1 #304078;\" width=$w height=$h>");
+
+     print ("</TD></TR>");
+
+     print ("</TBODY></TABLE>\n");
+
+     print ("<P></P>");
+
+     if ($tit[$number]!="") { print ("<B class=textblock>$tit[$number]</B>"); }
+
+     if ($comm[$number]!="") { print ("<BR><I>$comm[$number]</I>"); }
+?>
+
+<! -- Здесь заканчивается содержание страницы *********************************************** -->
+
+      </td></tr></table>
+
+    </td>
+  </tr>
+
+  <tr bgcolor="#B4BEE4">
+    <td colspan=3 height=20 align="center" valign="middle">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr valign="middle">
+          <td align="left" width="20%"></td>
+          <td align="center" width="60%">
+          <a title="Перейти вверх страницы" class=menu href="#top">Вверх</a> ·
+          <a title="Закрыть окно" class=menu href="javascript: window.close();">Закрыть</a>
+          </td>
+          <td align="right" width="20%"></td>
+        </tr>
+      </table>
+     </td>
+  </tr>
+
+</table>
+
+<!--Таблица высотой 5 пикселей -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle" height="5"> </td>
+  </tr>
+</table>
+
+</body>
+</html>
